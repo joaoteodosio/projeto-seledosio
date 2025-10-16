@@ -1,0 +1,271 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@font-face{
+    font-family: 'Android';
+    src:url('../fontes/idroid.otf') format('opentype');
+    font-weight: normal;
+}
+
+:root{
+    --cor0: #FFE7AD;
+    --cor1: #f09e05;
+    --cor2: #7A5600;
+    --cor3: #523A00;
+    --cor4: #00B4D8;
+    --cor5: #003D52;
+    --cor6: #03045E;
+
+    --font-padrao: Arial, verdana, Helvetica, sans-serif;
+    --font-destaque: 'Bebas neue', cursive;
+    --font-android: 'Android', cursive;
+}
+
+/*#### CONFIGURAÇÕES GLOBAIS###*/
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: var(--cor0);
+    font-family: var(--font-padrao);
+}
+
+main p{
+    margin: 15px 0px;
+    text-align: justify;    
+}
+/*### config. do header###*/
+header{
+    background-image: linear-gradient(to bottom, var(--cor2), var(--cor5));
+    min-height: 130px;
+    text-align: center;
+    padding-top: 30px;
+   
+}
+
+header > h1{
+    font-size: 3em;
+    color:white;
+    margin-bottom: 10px;
+    font-family: var(--font-destaque);
+    text-shadow:0px 9px 4px rgba(0, 0, 0, 0.473);
+      
+}
+
+header >p{
+    font-family: var(--font-padrao);
+    color: white;
+    font-size: 1.5em;
+    max-width: 700px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto; 
+    text-shadow:8px 4px 1px rgba(0, 0, 0, 0.274);
+}
+
+/* CONFIG. MENU NAVEGAÇÃO*/
+nav{
+    background-color: var(--cor6);
+    padding: 10px;
+    box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.11);
+
+}
+nav > a{
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition-duration: 2s;
+}
+nav > a:hover{
+    background-color: var(--cor1);
+    color:var(--cor6);
+    border-radius: 8px;
+
+}
+/* Slider Geral */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity:0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active{
+      opacity: 1;
+    }
+    .slide-text {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      background: rgba(0,0,0,0.5 );
+      color: #fff;
+      padding: 1rem, 2rem;
+      border-radius: 10px;
+    }
+    .slide-text a {
+      color: white;
+      background: #1e88e5;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      margin-top: 0.5rem;
+      display: inline-block;
+      border-radius: 5px;
+
+      /* BOTOES SLIDER*/
+    }
+    #prevBtn, #nextBtn{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4,);
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+    }
+    #prevBtn{left: 10px;}
+    #nextBtn{right: 10px;}
+    
+    @media (max-width: 768px) {
+      .slider {
+        height: 300px;
+      }
+      .slide-text{
+        font-size: 0.9rem;
+        padding: 1rem;
+        bottom: 20px;
+        left: 20px;
+      }
+      .slide-text h2 {
+        font-size: 1.2rem;
+      }
+      .btn-slide {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+      }
+    }
+/*##sessao cards##*/
+.cards{
+    width: 100%;
+    display: block;
+    background-color:var(--cor0);
+    padding-bottom: 10px;  
+}
+.cards .container{
+    display: grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    column-gap:20px;
+    row-gap: 15px;
+    padding:20px 20px;
+    
+}
+.cards .container figure{
+    padding: 10px;
+    background-color:#fff;
+    transition: .2s;
+    cursor: pointer;
+}
+.cards .container figure:hover{
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.445);
+    margin-top: -3px;
+}
+
+.cards .container figure img{
+    width: 100%;
+}
+.cards .container figure figcaption{
+    font-size: 1.3em;
+    color:#888;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.cards .container figure p{
+    text-align: center;
+    font-size: 1.1em;
+    line-height:30px;
+    color:#999 ;
+    padding: 10px;
+}
+
+.cards .container figure a{
+    display:block;
+    width: 100px;
+    min-width: 100px;
+    margin: 15px auto;
+    color: #666;
+    font-weight: bold;
+    background-image: linear-gradient(-10deg, #f5db4b, #fff,#f5db4d);
+    padding:10px 15px;
+    text-align: center;
+    border-radius: 30px;
+    text-decoration: none;
+    border: .3px solid #1613c9;
+}
+
+
+
+
+/*CONFIG. MAIN*/
+main{
+    background-color: white;
+    border-bottom-left-radius:10px ;
+    border-bottom-right-radius:10px ;
+    min-width: 260px;
+    margin-bottom: 30px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.301);
+}
+main  h1{
+    color: var(--cor4);
+    font-family: var(--font-android);
+}
+main h2{
+    font-family: var(--font-android);
+    color: var(--cor5);
+    font-size: 1.3em;
+    background-image: linear-gradient(to right, var(--cor1), transparent);
+    text-indent: 8px;
+}
+main p{
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 30px;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+main strong{
+    color: var(--cor3);
+    font-weight: bold;
+    
+}
+main a{
+    font-weight: bold;
+    text-decoration: none;
+    background-color: var(--cor1);
+    color: var(--cor5);
+}
+main a:hover{
+    text-decoration: underline;
+    color: var(--cor3);
+}
+main img{
+    width: 100%;
+
+}
+
