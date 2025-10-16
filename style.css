@@ -2,12 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
+/* VARIAVEIS PARA CORES:
+--FUNDO PRINCIPAL
+--TEXTO
+--TEXTO INVERTIDO
+--DESTAQUE
+--TESTAQUE INVERSO
+--FUNDO CARD */
+
 :root {
     --cor0: #F8E423;
     --cor1: #A7C5F4;
-    --cor2: #0A13DC;
-    --cor3: #0B57DB;
-    --cor4: #E2E2E2;
+    --header1: #fbff00;
+    --header2:#0977f2;
+    --destaque: #0A13DC;
+    --destaque-inverso: #3976df;
+    --texto:#000000;
+    --fundo-card: #E2E2E2;
     --cor5: #002244;
 
     --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
@@ -30,7 +41,7 @@ html, body {
 
 /* Cabeçalho */
 header {
-    background-image: linear-gradient(to bottom, var(--cor4), var(--cor5));
+    background-image: linear-gradient(to bottom, var(--header1), var(--header2));
     min-height: 150px;
     text-align: center;
     padding-top: 40px;
