@@ -163,19 +163,28 @@ img.pequena {
 }
 
 .video-container {
-    background-color: var(--cor3);
+    position: relative;
+    width: 100%;
+    margin: aouto;
+    aspect-ratio: 16/9;
+    /* background-color: var(--cor3);
     margin: 0px -20px 30px -20px;
     padding: 20px;
-    padding-bottom: 56.5%; /* Truque para manter a proporção 16:9 */
-    position: relative;
+    padding-bottom: 56.5%; Truque para manter a proporção 16:9 */
+    
 }
 
 .video-container > iframe {
     position: absolute;
-    top: 5%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    /*top: 5%;
     left: 5%;
     width: 90%;
-    height: 90%;
+    height: 90%;*/
 }
 
 /* Aside (Conteúdo Secundário) */
