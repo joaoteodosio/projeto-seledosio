@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 @font-face {
   font-family: 'Android';
   src: url('../fontes/idroid.otf') format('opentype');
@@ -10,14 +10,26 @@
 /*=============================
   VARIÁVEIS DE CORES E FONTES
 ==============================*/
-:root {
-  --cor0: #FFE7AD;
+
+ /* --cor0: #FFE7AD;
   --cor1: #f09e05;
   --cor2: #7A5600;
   --cor3: #523A00;
   --cor4: #00B4D8;
   --cor5: #003D52;
   --cor6: #03045E;
+*/
+
+:root {
+  --cor0: #F8E423;
+    --cor1: #A7C5F4;
+    --header1: #fbff00;
+    --header2:#0977f2;
+    --destaque: #0A13DC;
+    --destaque-inverso: #3976df;
+    --texto:#000000;
+    --fundo-card: #E2E2E2;
+    --cor5: #002244;
 
   --font-padrao: Arial, Verdana, Helvetica, sans-serif;
   --font-destaque: 'Bebas Neue', cursive;
@@ -33,7 +45,7 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   background-color: var(--cor0);
   font-family: var(--font-padrao);
   overflow-x: hidden;
@@ -48,17 +60,18 @@ main p {
   HEADER E MENU
 ==============================*/
 header {
-  background-image: linear-gradient(to bottom, var(--cor2), var(--cor5));
+  background-image: linear-gradient(to bottom, var(--header1), var(--header2));
   min-height: 130px;
   text-align: center;
   padding: 30px 15px;
+ 
 }
 
 header h1 {
   font-size: 3em;
   color: white;
   margin-bottom: 10px;
-  font-family: var(--font-destaque);
+  font-family: var(--fonte-destaque);
   text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.4);
 }
 
@@ -72,7 +85,7 @@ header p {
 
 /*==== MENU NAV ====*/
 nav {
-  background-color: var(--cor6);
+  background-color: var(--destaque);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -82,7 +95,7 @@ nav {
 }
 
 nav a {
-  color: white;
+  color:var(--cor1);
   padding: 10px 20px;
   text-decoration: none;
   font-weight: bold;
@@ -91,7 +104,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: var(--cor1);
+  background-color: var(--cor0);
   color: var(--cor6);
 }
 
@@ -107,6 +120,7 @@ nav a:hover {
   max-height: 80vh;
   overflow: hidden;
   background: #000;        /* evita flash se imagem demorar */
+ 
 }
 
 /* Container flexível — cada .slide ocupa 100% */
@@ -200,13 +214,13 @@ nav a:hover {
 ==============================*/
 .galeria {
   padding: 60px 30px;
-  background-color: var(--cor1);
+  background-color: var(--cor0);
   text-align: center;
 }
 
 .galeria h2 {
   font-family: var(--font-destaque);
-  color: var(--cor0);
+  color: #ffffff;
   font-size: 2.5em;
   margin-bottom: 30px;
 }
