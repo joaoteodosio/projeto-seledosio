@@ -201,7 +201,7 @@ nav a:hover {
   .prev, .next { font-size: 20px; padding: 9px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .carousel { height: 30vh; min-height: 180px; }
   .prev, .next { font-size: 18px; padding: 8px; }
   .indicators { bottom: 20px; gap: 8px; }
