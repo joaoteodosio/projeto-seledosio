@@ -126,7 +126,7 @@ nav a:hover {
 /* Container flexível — cada .slide ocupa 100% */
 .slides{
   display: flex;
-  width: 100%;
+  width: 120%;
   height: 100%;
   transition: transform 0.7s ease-in-out;
   will-change: transform;
@@ -141,7 +141,7 @@ nav a:hover {
 
 .slide img{
   display: block;
-  width: 100%;
+  width: 120%;
   height: 100%;
   object-fit: cover;
 }
