@@ -1,106 +1,81 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const carousel = document.querySelector('.carousel');
-  if (!carousel) return;
 
-  const slidesContainer = carousel.querySelector('.slides');
-  const slides = Array.from(slidesContainer.querySelectorAll('.slide'));
-  const prevBtn = carousel.querySelector('.prev');
-  const nextBtn = carousel.querySelector('.next');
-  const indicatorsWrap = carousel.querySelector('.indicators');
 
-  if (!slides.length) return;
+  // =========================
+// CARROSSEL COM SWIPE MOBILE
+// =========================
 
-  // cria indicadores dinamicamente
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'dot';
-    dot.setAttribute('aria-label', `Ir para slide ${i+1}`);
+const slides = document.querySelector(".slides");
+const slideItems = document.querySelectorAll(".slide");
+const btnPrev = document.querySelector(".prev");
+const btnNext = document.querySelector(".next");
+const indicatorsContainer = document.querySelector(".indicators");
+
+let index = 0;
+const total = slideItems.length;
+
+// Criar indicadores (bolinhas)
+slideItems.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
     dot.dataset.index = i;
-    indicatorsWrap.appendChild(dot);
-  });
-  const dots = Array.from(indicatorsWrap.querySelectorAll('.dot'));
+    indicatorsContainer.appendChild(dot);
 
-  let current = 0;
-  let autoplayInterval = null;
-  const AUTOPLAY_DELAY = 4000;
-  let isPointerDown = false;
-  let startX = 0;
-  let deltaX = 0;
+    dot.addEventListener("click", () => goToSlide(i));
+});
 
-  function goTo(index){
-    current = (index + slides.length) % slides.length;
-    slidesContainer.style.transform = `translateX(-${current * 100}%)`;
-    updateDots();
-  }
+const dots = document.querySelectorAll(".dot");
 
-  function next(){
-    goTo(current + 1);
-  }
+// Atualiza posição dos slides
+function updateCarousel() {
+    slides.style.transform = `translateX(${-index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[index].classList.add("active");
+}
 
-  function prev(){
-    goTo(current - 1);
-  }
+function goToSlide(i) {
+    index = i;
+    updateCarousel();
+}
 
-  function updateDots(){
-    dots.forEach(d => d.classList.remove('active'));
-    const activeDot = dots[current];
-    if (activeDot) activeDot.classList.add('active');
-  }
+function nextSlide() {
+    index = (index + 1) % total;
+    updateCarousel();
+}
 
-  // handlers
-  nextBtn && nextBtn.addEventListener('click', () => { next(); resetAutoplay(); });
-  prevBtn && prevBtn.addEventListener('click', () => { prev(); resetAutoplay(); });
+function prevSlide() {
+    index = (index - 1 + total) % total;
+    updateCarousel();
+}
 
-  dots.forEach(d => {
-    d.addEventListener('click', (e) => {
-      const idx = parseInt(e.currentTarget.dataset.index, 10);
-      goTo(idx);
-      resetAutoplay();
-    });
-  });
+btnNext.addEventListener("click", nextSlide);
+btnPrev.addEventListener("click", prevSlide);
 
-  // autoplay
-  function startAutoplay(){
-    stopAutoplay();
-    autoplayInterval = setInterval(next, AUTOPLAY_DELAY);
-  }
-  function stopAutoplay(){
-    if (autoplayInterval) { clearInterval(autoplayInterval); autoplayInterval = null; }
-  }
-  function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+// =========================
+// SUPORTE A SWIPE (CELULAR)
+// =========================
 
-  // pause on mouse / touch interaction
-  carousel.addEventListener('mouseenter', stopAutoplay);
-  carousel.addEventListener('mouseleave', startAutoplay);
-  carousel.addEventListener('focusin', stopAutoplay);
-  carousel.addEventListener('focusout', startAutoplay);
+let startX = 0;
+let moveX = 0;
+let isSwiping = false;
 
-  // touch / swipe support
-  carousel.addEventListener('pointerdown', (e) => {
-    isPointerDown = true;
-    startX = e.clientX;
-    deltaX = 0;
-    stopAutoplay();
-    carousel.style.touchAction = 'pan-y';
-  }, {passive: true});
+slides.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isSwiping = true;
+});
 
-  window.addEventListener('pointermove', (e) => {
-    if (!isPointerDown) return;
-    deltaX = e.clientX - startX;
-  }, {passive: true});
+slides.addEventListener("touchmove", (e) => {
+    if (!isSwiping) return;
+    moveX = e.touches[0].clientX - startX;
+});
 
-  window.addEventListener('pointerup', () => {
-    if (!isPointerDown) return;
-    isPointerDown = false;
-    if (Math.abs(deltaX) > 40) {
-      if (deltaX < 0) next();
-      else prev();
-    }
-    deltaX = 0;
-    resetAutoplay();
-  });
+slides.addEventListener("touchend", () => {
+    if (!isSwiping) return;
 
-  // Inicia
-  goTo(0);
-  startAutoplay();
+    if (moveX > 50) prevSlide();      // swipe direita
+    if (moveX < -50) nextSlide();     // swipe esquerda
+
+    isSwiping = false;
+    startX = 0;
+    moveX = 0;
 });
